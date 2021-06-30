@@ -5,7 +5,6 @@ import 'package:shop/providers/products.dart';
 class ProductDetailScreen extends StatelessWidget {
   // final String title;
   // final double price;
-  //
   // ProductDetailScreen(this.title, this.price);
   static const routeName = '/product-detail';
 
