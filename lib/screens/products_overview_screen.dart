@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 enum FilterOptions {
   Favorites,
-  all,
+  All,
 }
 
 class ProductsOverviewScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   @override
   void initState() {
-    // Provider.of<Products>(context).fetchAndSetProducts();
+    // Provider.of<Products>(context).fetchAndSetProducts(); // WON'T WORK!
     // Future.delayed(Duration.zero).then((_) {
     //   Provider.of<Products>(context).fetchAndSetProducts();
     // });
@@ -74,7 +74,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               ),
               PopupMenuItem(
                 child: Text('Show All'),
-                value: FilterOptions.all,
+                value: FilterOptions.All,
               ),
             ],
           ),
