@@ -10,7 +10,7 @@ class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
 
   Future<void> _refreshProducts(BuildContext context) async {
-    await Provider.of<Products>(context, listen: false).fetchAndSetProducts();
+    await Provider.of<Products>(context).fetchAndSetProducts();
   }
 
   @override
@@ -18,7 +18,7 @@ class UserProductsScreen extends StatelessWidget {
     final productsData = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Products!'),
+        title: const Text('Your Products'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add),
@@ -36,7 +36,7 @@ class UserProductsScreen extends StatelessWidget {
           child: ListView.builder(
             itemCount: productsData.items.length,
             itemBuilder: (_, i) => Column(
-              children: <Widget>[
+              children: [
                 UserProductItem(
                   productsData.items[i].id,
                   productsData.items[i].title,
