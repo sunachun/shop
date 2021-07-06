@@ -30,7 +30,7 @@ class Product with ChangeNotifier {
     isFavorite = !isFavorite;
     notifyListeners();
     final url =
-        'https://flutter-update-14042-default-rtdb.firebaseio.com/$id.json';
+        'https://flutter-update-14042-default-rtdb.firebaseio.com/products/$id.json';
     try {
       final response = await http.patch(
         Uri.parse(url),
