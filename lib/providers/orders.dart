@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,8 +27,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchAndSetOrders() async {
-    const url =
-        'https://flutter-update-14042-default-rtdb.firebaseio.com/orders.json';
+    const url = 'https://flutter-update.firebaseio.com/orders.json';
     final response = await http.get(Uri.parse(url));
     final List<OrderItem> loadedOrders = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -44,9 +44,9 @@ class Orders with ChangeNotifier {
               .map(
                 (item) => CartItem(
                   id: item['id'],
-                  title: item['title'],
-                  quantity: item['quantity'],
                   price: item['price'],
+                  quantity: item['quantity'],
+                  title: item['title'],
                 ),
               )
               .toList(),
@@ -58,8 +58,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-    const url =
-        'https://flutter-update-14042-default-rtdb.firebaseio.com/orders.json';
+    const url = 'https://flutter-update.firebaseio.com/orders.json';
     final timestamp = DateTime.now();
     final response = await http.post(
       Uri.parse(url),
@@ -73,7 +72,7 @@ class Orders with ChangeNotifier {
                   'quantity': cp.quantity,
                   'price': cp.price,
                 })
-            .toString(),
+            .toList(),
       }),
     );
     _orders.insert(
@@ -81,8 +80,8 @@ class Orders with ChangeNotifier {
       OrderItem(
         id: json.decode(response.body)['name'],
         amount: total,
-        products: cartProducts,
         dateTime: timestamp,
+        products: cartProducts,
       ),
     );
     notifyListeners();
