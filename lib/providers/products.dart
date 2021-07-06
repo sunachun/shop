@@ -42,11 +42,11 @@ class Products with ChangeNotifier {
     // ),
   ];
   // var _showFavoritesOnly = false;
-  //
+
   List<Product> get items {
-    //   if (_showFavoritesOnly) {
-    //     return _items.where((prodItem) => prodItem.isFavorite).toList();
-    //   }
+    // if (_showFavoritesOnly) {
+    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
+    // }
     return [..._items];
   }
 
@@ -58,11 +58,11 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  // void showFavoriteOnly() {
+  // void showFavoritesOnly() {
   //   _showFavoritesOnly = true;
   //   notifyListeners();
   // }
-  //
+
   // void showAll() {
   //   _showFavoritesOnly = false;
   //   notifyListeners();
@@ -117,7 +117,7 @@ class Products with ChangeNotifier {
         id: json.decode(response.body)['name'],
       );
       _items.add(newProduct);
-      // _items.insert(0, newProduct); //at the start of list リストの最初に表示する
+      // _items.insert(0, newProduct); // at the start of the list
       notifyListeners();
     } catch (error) {
       print(error);
@@ -128,7 +128,8 @@ class Products with ChangeNotifier {
   Future<void> updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      final url = 'https://flutter-update.firebaseio.com/products/$id.json';
+      final url =
+          'https://flutter-update-14042-default-rtdb.firebaseio.com/products/$id.json';
       await http.patch(Uri.parse(url),
           body: json.encode({
             'title': newProduct.title,
@@ -145,7 +146,7 @@ class Products with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     final url =
-        'https://flutter-update-14042-default-rtdb.firebaseio.com/$id.json';
+        'https://flutter-update-14042-default-rtdb.firebaseio.com/products/$id.json';
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);
