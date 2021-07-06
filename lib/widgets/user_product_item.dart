@@ -25,10 +25,8 @@ class UserProductItem extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.edit),
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  EditProductScreen.routeName,
-                  arguments: id,
-                );
+                Navigator.of(context)
+                    .pushNamed(EditProductScreen.routeName, arguments: id);
               },
               color: Theme.of(context).primaryColor,
             ),
@@ -42,7 +40,7 @@ class UserProductItem extends StatelessWidget {
                   scaffold.showSnackBar(
                     SnackBar(
                       content: Text(
-                        'Deleting failed',
+                        'Deleting failed!',
                         textAlign: TextAlign.center,
                       ),
                     ),
