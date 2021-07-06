@@ -24,7 +24,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
     description: '',
     imageUrl: '',
   );
-
   var _initValues = {
     'title': '',
     'description': '',
@@ -56,7 +55,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
         };
         _imageUrlController.text = _editedProduct.imageUrl;
       }
-      ;
     }
     _isInit = false;
     super.didChangeDependencies();
@@ -149,42 +147,37 @@ class _EditProductScreenState extends State<EditProductScreen> {
               child: CircularProgressIndicator(),
             )
           : Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16.0),
               child: Form(
                 key: _form,
                 child: ListView(
                   children: <Widget>[
                     TextFormField(
                       initialValue: _initValues['title'],
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                      ),
+                      decoration: InputDecoration(labelText: 'Title'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_priceFocusNode);
                       },
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please provide a value';
+                          return 'Please provide a value.';
                         }
                         return null;
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
-                          title: value,
-                          price: _editedProduct.price,
-                          description: _editedProduct.description,
-                          imageUrl: _editedProduct.imageUrl,
-                          id: _editedProduct.id,
-                          isFavorite: _editedProduct.isFavorite,
-                        );
+                            title: value,
+                            price: _editedProduct.price,
+                            description: _editedProduct.description,
+                            imageUrl: _editedProduct.imageUrl,
+                            id: _editedProduct.id,
+                            isFavorite: _editedProduct.isFavorite);
                       },
                     ),
                     TextFormField(
                       initialValue: _initValues['price'],
-                      decoration: InputDecoration(
-                        labelText: 'Price',
-                      ),
+                      decoration: InputDecoration(labelText: 'Price'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       focusNode: _priceFocusNode,
@@ -194,38 +187,35 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter a price';
+                          return 'Please enter a price.';
                         }
                         if (double.tryParse(value) == null) {
-                          return 'Please enter a valid number';
+                          return 'Please enter a valid number.';
                         }
                         if (double.parse(value) <= 0) {
-                          return 'Please enter a number greater than zero';
+                          return 'Please enter a number greater than zero.';
                         }
                         return null;
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
-                          title: _editedProduct.title,
-                          price: double.parse(value),
-                          description: _editedProduct.description,
-                          imageUrl: _editedProduct.imageUrl,
-                          id: _editedProduct.id,
-                          isFavorite: _editedProduct.isFavorite,
-                        );
+                            title: _editedProduct.title,
+                            price: double.parse(value),
+                            description: _editedProduct.description,
+                            imageUrl: _editedProduct.imageUrl,
+                            id: _editedProduct.id,
+                            isFavorite: _editedProduct.isFavorite);
                       },
                     ),
                     TextFormField(
                       initialValue: _initValues['description'],
-                      decoration: InputDecoration(
-                        labelText: 'Description',
-                      ),
+                      decoration: InputDecoration(labelText: 'Description'),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
                       focusNode: _descriptionFocusNode,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter a description';
+                          return 'Please enter a description.';
                         }
                         if (value.length < 10) {
                           return 'Should be at least 10 characters long.';
@@ -270,9 +260,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         ),
                         Expanded(
                           child: TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Image URL',
-                            ),
+                            decoration: InputDecoration(labelText: 'Image URL'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
                             controller: _imageUrlController,
