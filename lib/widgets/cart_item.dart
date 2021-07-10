@@ -46,34 +46,35 @@ class CartItem extends StatelessWidget {
             ),
             actions: <Widget>[
               FlatButton(
+                child: Text('No'),
                 onPressed: () {
                   Navigator.of(ctx).pop(false);
                 },
-                child: Text('No'),
               ),
               FlatButton(
+                child: Text('Yes'),
                 onPressed: () {
                   Navigator.of(ctx).pop(true);
                 },
-                child: Text('Yes'),
               ),
             ],
           ),
         );
       },
       onDismissed: (direction) {
-        Provider.of<Cart>(
-          context,
-          listen: false,
-        ).removeItem(productId);
+        Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
       child: Card(
+        margin: EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 4,
+        ),
         child: Padding(
           padding: EdgeInsets.all(8),
           child: ListTile(
             leading: CircleAvatar(
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
                 child: FittedBox(
                   child: Text('\$$price'),
                 ),

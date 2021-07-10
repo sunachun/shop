@@ -13,12 +13,12 @@ class CartScreen extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Cart!'),
+        title: Text('Your Cart'),
       ),
       body: Column(
         children: <Widget>[
           Card(
-            margin: EdgeInsets.all(15.0),
+            margin: EdgeInsets.all(15),
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Row(
@@ -38,14 +38,12 @@ class CartScreen extends StatelessWidget {
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  OrderButton(cart: cart),
+                  OrderButton(cart: cart)
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: cart.items.length,
@@ -57,7 +55,7 @@ class CartScreen extends StatelessWidget {
                 cart.items.values.toList()[i].title,
               ),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -78,6 +76,7 @@ class OrderButton extends StatefulWidget {
 
 class _OrderButtonState extends State<OrderButton> {
   var _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(

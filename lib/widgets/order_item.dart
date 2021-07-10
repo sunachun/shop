@@ -39,10 +39,7 @@ class _OrderItemState extends State<OrderItem> {
           if (_expanded)
             Container(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-              height: min(
-                widget.order.products.length * 20.0 + 10,
-                100,
-              ),
+              height: min(widget.order.products.length * 20.0 + 10, 100),
               child: ListView(
                 children: widget.order.products
                     .map(
@@ -62,13 +59,13 @@ class _OrderItemState extends State<OrderItem> {
                               fontSize: 18,
                               color: Colors.grey,
                             ),
-                          ),
+                          )
                         ],
                       ),
                     )
                     .toList(),
               ),
-            ),
+            )
         ],
       ),
     );
