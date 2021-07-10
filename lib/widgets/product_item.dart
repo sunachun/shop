@@ -3,13 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:shop/providers/cart.dart';
 import 'package:shop/providers/product.dart';
 import 'package:shop/screens/product_detail_screen.dart';
-import 'package:shop/widgets/app_drawer.dart';
 
 class ProductItem extends StatelessWidget {
   // final String id;
   // final String title;
   // final String imageUrl;
-  //
+
   // ProductItem(this.id, this.title, this.imageUrl);
 
   @override
@@ -34,14 +33,14 @@ class ProductItem extends StatelessWidget {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: Consumer<Product>(
-            builder: (ctx, product, child) => IconButton(
+            builder: (ctx, product, _) => IconButton(
               icon: Icon(
                 product.isFavorite ? Icons.favorite : Icons.favorite_border,
               ),
+              color: Theme.of(context).accentColor,
               onPressed: () {
                 product.toggleFavoriteStatus();
               },
-              color: Theme.of(context).accentColor,
             ),
           ),
           title: Text(
@@ -60,9 +59,7 @@ class ProductItem extends StatelessWidget {
                   content: Text(
                     'Added item to cart!',
                   ),
-                  duration: Duration(
-                    seconds: 2,
-                  ),
+                  duration: Duration(seconds: 2),
                   action: SnackBarAction(
                     label: 'UNDO',
                     onPressed: () {
